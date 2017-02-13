@@ -1,26 +1,13 @@
 {
-  "name": "react-redux-auth0-kit",
+  "name": "Senior-Project",
   "version": "1.0.0",
-  "description": "Minimal starter boilerplate project with React, Redux, React Router and Auth0 authentication",
+  "description": "Payments website",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/amaurymartiny/react-redux-auth0-kit.git"
+    "url": "https://github.com/BrandonVo/BookingWebsite.git"
   },
-  "keywords": [
-    "react",
-    "redux",
-    "react-router",
-    "auth0",
-    "boilerplate",
-    "starter"
-  ],
-  "author": "Amaury Martiny",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/amaurymartiny/react-redux-auth0-kit/issues"
-  },
-  "homepage": "https://github.com/amaurymartiny/react-redux-auth0-kit",
+  "author": "Brandon Vo",
   "scripts": {
     "test": "mocha --require mock-local-storage --require test/setup.js \"src/**/*.spec.js\"",
     "start": "node server",
@@ -37,8 +24,10 @@
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
+    "rebass": "^0.3.4",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "reflexbox": "^2.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
