@@ -24,7 +24,7 @@ const HomePage = () => (
       <Section pb={0}>
         <SectionHeader heading="About" />
         <p style={{ fontSize: '20px' }}>
-            Text about goes here
+            Text for about goes here
         </p>
       </Section>
     </Container>

@@ -1,27 +1,42 @@
 import React from 'react'
-import { Link } from 'react-router'
-import './Header.css'
+import {
+  NavItem,
+  Space,
+  Fixed,
+  Toolbar,
+  Button,
+} from 'rebass'
+import { Flex } from 'reflexbox'
 
-const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick }) =>
-  <div>
-    <h1>React Redux Auth0 Kit</h1>
-    <ul className="list-inline">
-      <li><Link to='/'>Home</Link></li>
-      <li><Link to='/about'>About</Link></li>
-    </ul>
-    { !isAuthenticated ? (
-      <button onClick={onLoginClick}>Login</button>
-    ) : (
-      <div>
-        <img src={profile.picture} height="40px" />
-        <span>Welcome, {profile.nickname}</span>
-        <button onClick={onLogoutClick}>Logout</button>
-      </div>
-    )}
-    { error &&
-      <p>{error}</p>
-    }
-  </div>
+const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick }) => (
+    <Fixed top left right zIndex={1}>
+      <Toolbar backgroundColor="black">
+        <NavItem is="object" color="midgray">
+            gatherologie
+        </NavItem>
+        <Space auto />
+        <NavItem is="object">
+          {
+            !isAuthenticated ?
+              <Button onClick={onLoginClick} backgroundColor="green">
+                Login
+              </Button> :
+              <Flex>
+                <NavItem color="midgray" >
+                  {profile.nickname}
+                </NavItem>
+                  <Button onClick={onLogoutClick} backgroundColor="red">
+                    Logout
+                  </Button>
+              </Flex>
+          }
+        </NavItem>
+        { error &&
+          <p>{error}</p>
+        }
+      </Toolbar>
+    </Fixed>
+  )
 
 Header.propTypes = {
   isAuthenticated: React.PropTypes.bool.isRequired,
