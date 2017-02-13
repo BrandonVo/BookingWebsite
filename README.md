@@ -82,3 +82,4 @@ Out of the box, this starter kit is deployable by serving the `~/dist` folder ge
 ## Support on Beerpay
 
 [![Beerpay](https://beerpay.io/amaurymartiny/react-redux-auth0-kit/badge.svg?style=beer-square)](https://beerpay.io/amaurymartiny/react-redux-auth0-kit)  [![Beerpay](https://beerpay.io/amaurymartiny/react-redux-auth0-kit/make-wish.svg?style=flat-square)](https://beerpay.io/amaurymartiny/react-redux-auth0-kit?focus=wish)
+# BookingWebsite
