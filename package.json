@@ -19,13 +19,17 @@
   "dependencies": {
     "auth0-lock": "^10.4.0",
     "jwt-decode": "^2.1.0",
+    "material-ui": "^0.17.0",
+    "promise": "^7.1.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
+    "react-tap-event-plugin": "^2.0.1",
     "rebass": "^0.3.4",
     "redux": "^3.6.0",
+    "redux-form": "^6.5.0",
     "redux-thunk": "^2.1.0",
     "reflexbox": "^2.2.3"
   },

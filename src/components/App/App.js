@@ -1,5 +1,6 @@
 import React from 'react'
 import { HeaderContainer } from '../../containers'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 class App extends React.Component {
   constructor(props) {
@@ -9,10 +10,12 @@ class App extends React.Component {
 
   render() {
     return(
+      <MuiThemeProvider>
       <div>
         <HeaderContainer />
         {this.props.children}
       </div>
+      </MuiThemeProvider>
     )
   }
 }

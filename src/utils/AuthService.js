@@ -9,14 +9,14 @@ export default class AuthService {
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
         redirectUrl: 'http://localhost:3000/callback',
-        responseType: 'token'
+        responseType: 'token',
       },
       // theme: {
       //   logo: LogoImg,
       //   primaryColor: "#b81b1c"
       // },
       languageDictionary: {
-        title: 'React Redux Auth0 Kit'
+        title: 'gatherologie'
       }
     })
     // binds login functions to keep this context
