@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "auth0-lock": "^10.4.0",
+    "autoprefixer": "^6.7.6",
     "express": "^4.15.0",
     "html-webpack-plugin": "^2.28.0",
     "jwt-decode": "^2.1.0",
