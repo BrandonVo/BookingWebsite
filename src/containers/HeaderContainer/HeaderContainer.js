@@ -1,20 +1,24 @@
 import { connect } from 'react-redux'
-import { loginRequest, logoutSuccess } from '../../actions'
+import { loginRequest, logoutSuccess, toggleDropdown } from '../../actions'
 import { Header } from '../../components'
 
 const mapStateToProps = (state) => {
   const { isAuthenticated, profile, error } = state.auth
+  const {isDropdownOpen} = state.toggle
   return {
     isAuthenticated,
     profile,
-    error
+    error,
+    isDropdownOpen
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onLoginClick: () => dispatch(loginRequest()),
-    onLogoutClick: () => dispatch(logoutSuccess())
+    onLogoutClick: () => dispatch(logoutSuccess()),
+    onToggleDropdown: () => dispatch(toggleDropdown()),
+    onToggleDropdownChange: (isOpen) => dispatch(toggleDropdown(isOpen)),
   }
 }
 

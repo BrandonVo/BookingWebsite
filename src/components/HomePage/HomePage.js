@@ -13,7 +13,7 @@ const HomePage = () => (
   <Flex column style={{ flex: '1 0 auto' }}>
     <Banner
       style={{ minHeight: '75vh', backgroundAttachment: 'scroll' }}
-      backgroundImage="http://www.webdesignburn.com/wp-content/uploads/2015/07/wed-2.jpg"
+      backgroundImage='http://weknowyourdreams.com/images/wedding/wedding-02.jpg'
       m={0}
     >
       <Heading size={2} big>

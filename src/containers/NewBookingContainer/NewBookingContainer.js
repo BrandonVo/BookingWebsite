@@ -7,8 +7,7 @@ class NewBookingContainer extends React.Component {
   render() {
     return (
       <div>
-        <h2>Create a New Booking</h2>
-      <BookingForm /*onSubmit={addBooking}*/ {...this.props}/>
+      <center><BookingForm {...this.props}/></center>
             </div>
     )
   }

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField'
+import DatePicker from 'material-ui/DatePicker'
+import moment from 'moment'
 
 const validate = values => {
   const errors = {}
@@ -24,6 +26,15 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
     {...custom}
   />
 )
+
+
+const renderDatePicker = ({input, label ,meta: {touched, error} }) => (
+  <div>
+        <DatePicker {...input} dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} hintText = {label}/>
+        {touched && error && <span>{error}</span>}
+  </div>
+)
+
 const BookingForm = ({addBooking, handleSubmit, pristine, reset, submitting}) => {
   return (
     <form onSubmit={handleSubmit(addBooking)}>
@@ -41,6 +52,9 @@ const BookingForm = ({addBooking, handleSubmit, pristine, reset, submitting}) =>
       </div>
       <div>
         <Field name="vName" component={renderTextField} label="Venue/Vendor Name"/>
+      </div>
+      <div>
+        <Field name="eventDate" component={renderDatePicker} label="Event Date"/>
       </div>
       <br/>
       <br/>
@@ -62,6 +76,12 @@ BookingForm.propTypes = {
 }
 
 renderTextField.propTypes = {
+  input: React.PropTypes.obj,
+  label: React.PropTypes.string,
+  meta : React.PropTypes.obj,
+}
+
+renderDatePicker.propTypes = {
   input: React.PropTypes.obj,
   label: React.PropTypes.string,
   meta : React.PropTypes.obj,
