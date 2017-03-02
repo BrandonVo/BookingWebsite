@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "auth0-lock": "^10.4.0",
+    "express": "^4.15.0",
     "jwt-decode": "^2.1.0",
     "material-ui": "^0.17.0",
     "moment": "^2.17.1",
