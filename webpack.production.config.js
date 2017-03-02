@@ -3,7 +3,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var DotenvPlugin = require('webpack-dotenv-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -30,10 +29,6 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./.env`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
-    new DotenvPlugin({
-      sample: './.env.example',
-      path: './.env'
-    }),
     // CSS files from the extract-text-plugin loader
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),

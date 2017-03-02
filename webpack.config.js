@@ -3,7 +3,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -31,10 +30,6 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./.env`.
-    new DotenvPlugin({
-      sample: './.env.example',
-      path: './.env'
-    })
   ],
   module: {
     // First, run the linter.
