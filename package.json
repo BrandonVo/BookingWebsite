@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Payments website",
   "engines": {
-    "node": "6.9.5",
+    "node": "6.9.5"
   },
   "main": "server.js",
   "repository": {
