@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import TextField from 'material-ui/TextField'
+import Dropzone from 'react-dropzone'
 
 const validate = values => {
   const errors = {}
@@ -25,6 +26,29 @@ const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) 
   />
 )
 
+const renderDropzoneInput = (field) => {
+  const files = field.input.value
+  return (
+    <div>
+      <Dropzone
+        name={field.name}
+        onDrop={( filesToUpload) => field.input.onChange(filesToUpload)}
+      >
+        <div>Try dropping some files here, or click to select files to upload.</div>
+      </Dropzone>
+      {field.meta.touched &&
+        field.meta.error &&
+        <span className="error">{field.meta.error}</span>}
+      {files && Array.isArray(files) && (
+        <ul>
+          { files.map((file) => <div><p>{file.name}</p> <img src={file.preview}/></div>) }
+        </ul>
+      )}
+    </div>
+  )
+}
+
+
 
 const CompanyForm = ({addCompany, handleSubmit, pristine, reset, submitting}) => {
   return (
@@ -43,6 +67,11 @@ const CompanyForm = ({addCompany, handleSubmit, pristine, reset, submitting}) =>
       </div>
       <div>
         <Field name="phone" component={renderTextField} label="Phone"/>
+      </div>
+      <br/>
+      <div>
+        <p>Company Logo</p>
+        <Field name="logoFile" component={renderDropzoneInput} label="Company Logo"/>
       </div>
       <br/>
       <br/>
