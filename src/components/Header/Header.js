@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar'
 import FlatButton from 'material-ui/FlatButton'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import IconButton from 'material-ui/IconButton'
 import { browserHistory } from 'react-router'
 
@@ -17,11 +17,15 @@ function handleNewBooking(){
   browserHistory.push('/addBooking')
 }
 
+function handleNewCompany(){
+  browserHistory.push('/addCompany')
+}
+
 const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick, onToggleDropdown, isDropdownOpen, onToggleDropdownChange }) => (
     <div>
       <AppBar
         title="gatherologie"
-        iconElementLeft = {isAuthenticated ? <IconButton onClick={onToggleDropdown}><MoreVertIcon/></IconButton> : <IconButton><MoreVertIcon/></IconButton>}
+        iconElementLeft = {isAuthenticated ? <IconButton onClick={onToggleDropdown}><MenuIcon/></IconButton> : <IconButton><MenuIcon/></IconButton>}
 
         iconElementRight = {!isAuthenticated ? <FlatButton label="Login" onClick={onLoginClick}/> : <FlatButton label="Logout" onClick={onLogoutClick}/>}
       />
@@ -32,6 +36,7 @@ const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick, 
       >
         <MenuItem onClick={handleAbout}>About</MenuItem>
         <MenuItem onClick={handleNewBooking}>New Booking</MenuItem>
+        <MenuItem onClick={handleNewCompany}>New Company</MenuItem>
         <MenuItem onClick={onToggleDropdown}>Close Drawer</MenuItem>
       </Drawer>
       { error &&

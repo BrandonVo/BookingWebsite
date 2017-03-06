@@ -5,6 +5,7 @@ import {reducer as formReducer} from 'redux-form'
 import { combineReducers } from 'redux'
 import auth from './auth'
 import bookingForm from './newbooking'
+import companyForm from './company'
 import toggle from './toggle'
 
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   form : formReducer,
   bookingForm,
   toggle,
+  companyForm,
 })
 
 export default rootReducer
