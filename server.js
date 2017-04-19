@@ -11,8 +11,23 @@ const isDeveloping = process.env.NODE_ENV !== 'production';
 var port = process.env.PORT || 8080;
 const app = express();
 const router = express.Router()
+var db = require('./queries')
+var bodyParser = require('body-parser')
 
-//router.post("/booking", )
+router.get('/booking', db.getAllBookings);
+router.post('/booking', db.createBooking);
+router.get('/company', db.getAllCompanies);
+router.post('/company', db.createCompany);
+router.get('/tour', db.getAllTours);
+router.post('/tour', db.createTour);
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse application/json
+app.use(bodyParser.json())
+
+app.use('/api', router);
 
 
 if (isDeveloping) {

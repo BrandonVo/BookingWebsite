@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import TextField from 'material-ui/TextField'
+import {TextField} from 'redux-form-material-ui'
 import Dropzone from 'react-dropzone'
 
 const validate = values => {
@@ -16,15 +16,6 @@ const validate = values => {
   }
   return errors
 }
-
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-)
 
 const renderDropzoneInput = (field) => {
   const files = field.input.value
@@ -57,16 +48,16 @@ const CompanyForm = ({addCompany, handleSubmit, pristine, reset, submitting}) =>
       <h2>Create a New Company</h2>
     </div>
       <div>
-        <Field name="companyName" component={renderTextField} label="Company Name"/>
+        <Field name="companyName" component={TextField} floatingLabelText="Company Name"/>
       </div>
       <div>
-        <Field name="description" component={renderTextField} label="Description Name"/>
+        <Field name="description" component={TextField} floatingLabelText="Description Name"/>
       </div>
       <div>
-        <Field name="email" component={renderTextField} label="Email"/>
+        <Field name="email" component={TextField} floatingLabelText="Email"/>
       </div>
       <div>
-        <Field name="phone" component={renderTextField} label="Phone"/>
+        <Field name="phone" component={TextField} floatingLabelText="Phone"/>
       </div>
       <br/>
       <div>
@@ -90,12 +81,6 @@ CompanyForm.propTypes = {
   pristine: React.PropTypes.bool,
   reset: React.PropTypes.func,
   submitting: React.PropTypes.bool,
-}
-
-renderTextField.propTypes = {
-  input: React.PropTypes.obj,
-  label: React.PropTypes.string,
-  meta : React.PropTypes.obj,
 }
 
 

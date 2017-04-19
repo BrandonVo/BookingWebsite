@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import {TextField, DatePicker} from 'redux-form-material-ui'
+import MenuItem from 'material-ui/MenuItem'
+import {TextField, DatePicker, SelectField} from 'redux-form-material-ui'
 
 const validate = values => {
   const errors = {}
@@ -16,11 +17,11 @@ const validate = values => {
   return errors
 }
 
-const BookingForm = ({addBooking, handleSubmit, pristine, reset, submitting}) => {
+const TourForm = ({addTour, handleSubmit, pristine, reset, submitting}) => {
   return (
-    <form onSubmit={handleSubmit(addBooking)}>
+    <form onSubmit={handleSubmit(addTour)}>
     <div>
-      <h2>Create a New Booking</h2>
+      <h2>Create a New Tour</h2>
     </div>
       <div>
         <Field name="firstName" component={TextField} floatingLabelText="First Name"/>
@@ -35,10 +36,13 @@ const BookingForm = ({addBooking, handleSubmit, pristine, reset, submitting}) =>
         <Field name="vName" component={TextField} floatingLabelText="Venue/Vendor Name"/>
       </div>
       <div>
-        <Field name="price" component={TextField} floatingLabelText="Price"/>
+        <Field name="tourDate" component={DatePicker} floatingLabelText="Tour Date"/>
       </div>
       <div>
-        <Field name="eventDate" component={DatePicker} floatingLabelText="Event Date"/>
+        <Field name="timeslot" component={SelectField} floatingLabelText="Time of Tour">
+          <MenuItem value="AM" primaryText="AM"/>
+          <MenuItem value="PM" primaryText="PM"/>
+        </Field>
       </div>
       <br/>
       <br/>
@@ -51,8 +55,8 @@ const BookingForm = ({addBooking, handleSubmit, pristine, reset, submitting}) =>
   )
 }
 
-BookingForm.propTypes = {
-  addBooking: React.PropTypes.func,
+TourForm.propTypes = {
+  addTour: React.PropTypes.func,
   handleSubmit: React.PropTypes.func,
   pristine: React.PropTypes.bool,
   reset: React.PropTypes.func,
@@ -60,6 +64,6 @@ BookingForm.propTypes = {
 }
 
 export default reduxForm({
-  form: 'bookingform',  // a unique identifier for this form
+  form: 'tourform',  // a unique identifier for this form
   validate,
-})(BookingForm)
+})(TourForm)
