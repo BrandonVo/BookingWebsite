@@ -16,7 +16,7 @@
     "start": "node server",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
-    "build": "webpack --config ./webpack.production.config.js --progress --profile --colors",
+    "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint ."
   },
   "dependencies": {
