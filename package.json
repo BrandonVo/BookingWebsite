@@ -23,6 +23,7 @@
     "auth0-lock": "^10.4.0",
     "autoprefixer": "^6.7.6",
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
     "express": "^4.15.0",
     "html-webpack-plugin": "^2.28.0",
     "jwt-decode": "^2.1.0",
