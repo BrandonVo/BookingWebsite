@@ -31,6 +31,7 @@ app.use('/api', router);
 
 
 if (isDeveloping) {
+  console.log("sup");
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
     publicPath: config.output.publicPath,
@@ -52,6 +53,7 @@ if (isDeveloping) {
     res.end();
   });
 } else {
+  console.log("hi");
   app.use(express.static(__dirname + '/dist'));
   app.get('*', function response(req, res) {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
@@ -64,3 +66,19 @@ app.listen(port, '0.0.0.0', function onStart(error) {
   }
   console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
 });
+
+
+/*
+var express = require('express')
+var app = express()
+
+app.set('port', (process.env.PORT || 5000))
+app.use(express.static(__dirname + '/public'))
+
+app.get('/', function(request, response) {
+  response.send('Hello World!')
+})
+
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'))
+})*/
