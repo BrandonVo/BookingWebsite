@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react'
 import Promise from 'promise'
-import { viewTours, selectTour, deleteTour } from '../../actions'
+import { viewCompanies, selectCompany, deleteCompany } from '../../actions'
 import { browserHistory } from 'react-router'
 
 import {
@@ -15,7 +15,7 @@ import {
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 /* eslint no-console: 0 */
-class AllToursContainer extends React.Component {
+class AllCompaniesContainer extends React.Component {
   constructor(props) {
     super(props)
 
@@ -30,7 +30,7 @@ class AllToursContainer extends React.Component {
 
 
   componentDidMount(){
-    Promise.resolve(this.props.viewTours()).then(
+    Promise.resolve(this.props.viewCompanies()).then(
       () => this.setState({currentlyDisplayed: this.props.items})
     )
   }
@@ -38,21 +38,20 @@ class AllToursContainer extends React.Component {
 
   onSelectChange(key) {
     var selected = this.state.currentlyDisplayed[key]
-    this.props.selectTour(selected)
+    this.props.selectCompany(selected)
   }
 
   onEdit(){
-    
-    browserHistory.push('/updateTour')
+
+    browserHistory.push('/updateCompany')
   }
 
   onSearchChange(event) {
     var newDisplayed = this.props.items.filter((item) => item.cname.toLowerCase().includes(event.target.value.toLowerCase()) ||
       item.cemail.toLowerCase().includes(event.target.value.toLowerCase()) ||
-      item.vname.toLowerCase().includes(event.target.value.toLowerCase()) ||
-      item.tourdate.includes(event.target.value.toLowerCase()) ||
-      item.timeslot.toLowerCase().includes(event.target.value.toLowerCase()) ||
-      item.tnumber == event.target.value
+      item.cdescription.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      item.cphone.includes(event.target.value.toLowerCase()) ||
+      item.cnumber == event.target.value
     )
     if (event.target.value == ''){
       newDisplayed = this.props.items
@@ -63,8 +62,8 @@ class AllToursContainer extends React.Component {
   }
 
   onDelete(){
-    this.props.deleteTour()
-    Promise.resolve(this.props.viewTours()).then(
+    this.props.deleteCompany()
+    Promise.resolve(this.props.viewCompanies()).then(
       () => this.setState({currentlyDisplayed: this.props.items})
     )
   }
@@ -97,22 +96,20 @@ class AllToursContainer extends React.Component {
             <TableRow>
               <TableHeaderColumn>ID</TableHeaderColumn>
               <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Description</TableHeaderColumn>
               <TableHeaderColumn>Email</TableHeaderColumn>
-              <TableHeaderColumn>Venue/Vendor</TableHeaderColumn>
-              <TableHeaderColumn>Tour Date</TableHeaderColumn>
-              <TableHeaderColumn>Timeslot</TableHeaderColumn>
+              <TableHeaderColumn>Phone</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
           >
             {this.state.currentlyDisplayed.map((item, i) =>
               <TableRow key={i} value={item}>
-                <TableRowColumn>{item.tnumber}</TableRowColumn>
+                <TableRowColumn>{item.cnumber}</TableRowColumn>
                 <TableRowColumn>{item.cname}</TableRowColumn>
+                <TableRowColumn>{item.cdescription}</TableRowColumn>
                 <TableRowColumn>{item.cemail}</TableRowColumn>
-                <TableRowColumn>{item.vname}</TableRowColumn>
-                <TableRowColumn>{item.tourdate.substring(0, 10)}</TableRowColumn>
-                <TableRowColumn>{item.timeslot}</TableRowColumn>
+                <TableRowColumn>{item.cphone}</TableRowColumn>
               </TableRow>
             )}
           </TableBody>
@@ -132,10 +129,10 @@ class AllToursContainer extends React.Component {
   }
 }
 
-AllToursContainer.propTypes = {
-  viewTours: React.PropTypes.func.isRequired,
-  selectTour: React.PropTypes.func.isRequired,
-  deleteTour: React.PropTypes.func.isRequired,
+AllCompaniesContainer.propTypes = {
+  viewCompanies: React.PropTypes.func.isRequired,
+  selectCompany: React.PropTypes.func.isRequired,
+  deleteCompany: React.PropTypes.func.isRequired,
   items: React.PropTypes.array,
   isFetching: React.PropTypes.bool,
 }
@@ -145,7 +142,7 @@ const mapStateToProps = (state) => {
     isFetching,
     items,
     selected
-  } = state.tourForm
+  } = state.companyForm
 
 
   return {
@@ -156,12 +153,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  viewTours: () => dispatch(viewTours()),
-  deleteTour: () => dispatch(deleteTour()),
-  selectTour: (selectedTour) => dispatch(selectTour(selectedTour)),
+  viewCompanies: () => dispatch(viewCompanies()),
+  deleteCompany: () => dispatch(deleteCompany()),
+  selectCompany: (selectedCompany) => dispatch(selectCompany(selectedCompany)),
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AllToursContainer)
+)(AllCompaniesContainer)

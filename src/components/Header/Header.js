@@ -25,6 +25,14 @@ function handleAddTour(){
   browserHistory.push('/addTour')
 }
 
+function handleViewAllTours(){
+  browserHistory.push('/viewTours')
+}
+
+function handleViewAllCompanies(){
+  browserHistory.push('/viewCompanies')
+}
+
 const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick, onToggleDropdown, isDropdownOpen, onToggleDropdownChange }) => (
     <div>
       <AppBar
@@ -42,6 +50,8 @@ const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick, 
         <MenuItem onClick={handleNewBooking}>New Booking</MenuItem>
         <MenuItem onClick={handleNewCompany}>New Company</MenuItem>
         <MenuItem onClick={handleAddTour}>Add Tour</MenuItem>
+        <MenuItem onClick={handleViewAllTours}>View Tours</MenuItem>
+        <MenuItem onClick={handleViewAllCompanies}>View Companies</MenuItem>
         <MenuItem onClick={onToggleDropdown}>Close Drawer</MenuItem>
       </Drawer>
       { error &&

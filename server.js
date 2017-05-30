@@ -16,10 +16,18 @@ var bodyParser = require('body-parser')
 
 router.get('/booking', db.getAllBookings);
 router.post('/booking', db.createBooking);
+router.delete('/booking', db.deleteBooking);
+router.put('/booking', db.updateBooking);
+
 router.get('/company', db.getAllCompanies);
 router.post('/company', db.createCompany);
+router.delete('/company', db.deleteCompany);
+router.put('/company', db.updateCompany);
+
 router.get('/tour', db.getAllTours);
 router.post('/tour', db.createTour);
+router.delete('/tour', db.deleteTour);
+router.put('/tour', db.updateTour);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
