@@ -81,6 +81,7 @@ class AllCompaniesContainer extends React.Component {
       </div>
       <div>
         <center>
+        <h2>Companies</h2>
         {this.props.isFetching && this.props.items.length === 0 &&
           <h2>Loading...</h2>
         }

@@ -3,7 +3,8 @@ import { Route, IndexRoute } from 'react-router'
 
 import { AppContainer, NewBookingContainer, NewCompanyContainer,
   NewTourContainer, AllToursContainer, UpdateTourContainer,
-  AllCompaniesContainer, UpdateCompanyContainer } from './containers'
+  AllCompaniesContainer, UpdateCompanyContainer,
+  AllBookingsContainer, UpdateBookingContainer} from './containers'
 import { HomePage, AboutPage, NotFoundPage } from './components'
 
 export default function createRoutes() {
@@ -18,6 +19,8 @@ export default function createRoutes() {
       <Route path='/updateTour' component={UpdateTourContainer} />
       <Route path='/viewCompanies' component={AllCompaniesContainer} />
       <Route path='/updateCompany' component={UpdateCompanyContainer} />
+      <Route path='/viewBookings' component={AllBookingsContainer} />
+      <Route path='/updateBooking' component={UpdateBookingContainer} />
       <Route path='*' component={NotFoundPage} />
     </Route>
   )

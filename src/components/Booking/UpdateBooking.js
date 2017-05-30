@@ -1,7 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import MenuItem from 'material-ui/MenuItem'
-import {TextField, DatePicker, SelectField} from 'redux-form-material-ui'
+import {TextField, DatePicker} from 'redux-form-material-ui'
 import { browserHistory } from 'react-router'
 
 const validate = values => {
@@ -19,14 +18,14 @@ const validate = values => {
 }
 
 
-const UpdateTourForm = ({updateTour, handleSubmit, pristine, submitting}) => {
+const UpdateBookingForm = ({updateBooking, handleSubmit, pristine, submitting}) => {
   return (
-    <form onSubmit={handleSubmit(updateTour)}>
+    <form onSubmit={handleSubmit(updateBooking)}>
     <div>
-      <h2>Update Tour</h2>
+      <h2>Update Booking</h2>
     </div>
       <div>
-        <Field name="tnumber" component={TextField} disabled={true} floatingLabelText="Number"/>
+        <Field name="bnumber" component={TextField} disabled={true} floatingLabelText="Number"/>
       </div>
       <div>
         <Field name="firstName" component={TextField} floatingLabelText="Name"/>
@@ -41,27 +40,24 @@ const UpdateTourForm = ({updateTour, handleSubmit, pristine, submitting}) => {
         <Field name="vName" component={TextField} floatingLabelText="Venue/Vendor Name"/>
       </div>
       <div>
-        <Field name="tourDate" component={DatePicker} floatingLabelText="Tour Date"/>
+        <Field name="price" component={TextField} floatingLabelText="Price"/>
       </div>
       <div>
-        <Field name="timeslot" component={SelectField} floatingLabelText="Time of Tour">
-          <MenuItem value="AM" primaryText="AM"/>
-          <MenuItem value="PM" primaryText="PM"/>
-        </Field>
+        <Field name="eventDate" component={DatePicker} floatingLabelText="Event Date"/>
       </div>
       <br/>
       <br/>
       <div>
         <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" onClick={() => {browserHistory.push('/viewTours')}}>Cancel
+        <button type="button" onClick={() => {browserHistory.push('/viewBookings')}}>Cancel
         </button>
       </div>
     </form>
   )
 }
 
-UpdateTourForm.propTypes = {
-  updateTour: React.PropTypes.func,
+UpdateBookingForm.propTypes = {
+  updateBooking: React.PropTypes.func,
   handleSubmit: React.PropTypes.func,
   pristine: React.PropTypes.bool,
   reset: React.PropTypes.func,
@@ -70,6 +66,6 @@ UpdateTourForm.propTypes = {
 
 
 export default reduxForm({
-  form: 'updatetourform',  // a unique identifier for this form
+  form: 'updatebookingform',  // a unique identifier for this form
   validate,
-})(UpdateTourForm)
+})(UpdateBookingForm)

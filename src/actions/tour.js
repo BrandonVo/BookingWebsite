@@ -5,6 +5,7 @@ export const TOUR_UPDATE = 'TOUR_ADD'
 export const REQUEST_TOURS = 'REQUEST_TOURS'
 export const RECIEVE_TOURS = 'RECIEVE_TOURS'
 export const SELECT_TOUR = 'SELECT_TOUR'
+import { browserHistory } from 'react-router'
 
 export function addTour() {
   return (dispatch, getState) => {
@@ -75,6 +76,9 @@ export function updateTour(){
         tnumber: form.updatetourform.values.tnumber
       }),
     })
+    .then(
+      browserHistory.push('/viewTours')
+    )
     .then(
       dispatch({
         type: TOUR_UPDATE,

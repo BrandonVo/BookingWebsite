@@ -5,6 +5,7 @@ export const COMPANY_UPDATE = 'COMPANY_ADD'
 export const REQUEST_COMPANIES = 'REQUEST_COMPANIES'
 export const RECIEVE_COMPANIES = 'RECIEVE_COMPANIES'
 export const SELECT_COMPANY = 'SELECT_COMPANY'
+import { browserHistory } from 'react-router'
 
 export function addCompany() {
   return (dispatch, getState) => {
@@ -74,6 +75,9 @@ export function updateCompany(){
         cnumber: form.updatecompanyform.values.cnumber
       }),
     })
+    .then(
+      browserHistory.push('/viewCompanies')
+    )
     .then(
       dispatch({
         type: COMPANY_UPDATE,

@@ -6,6 +6,7 @@ import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import IconButton from 'material-ui/IconButton'
+import Divider from 'material-ui/Divider'
 import { browserHistory } from 'react-router'
 
 
@@ -33,6 +34,10 @@ function handleViewAllCompanies(){
   browserHistory.push('/viewCompanies')
 }
 
+function handleViewAllBookings(){
+  browserHistory.push('/viewBookings')
+}
+
 const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick, onToggleDropdown, isDropdownOpen, onToggleDropdownChange }) => (
     <div>
       <AppBar
@@ -46,12 +51,16 @@ const Header = ({ isAuthenticated, profile, error, onLoginClick, onLogoutClick, 
         docked={false}
         onRequestChange={onToggleDropdownChange}
       >
-        <MenuItem onClick={handleAbout}>About</MenuItem>
-        <MenuItem onClick={handleNewBooking}>New Booking</MenuItem>
-        <MenuItem onClick={handleNewCompany}>New Company</MenuItem>
+        <MenuItem onClick={handleNewBooking}>Add Booking</MenuItem>
+        <MenuItem onClick={handleViewAllBookings}>View Bookings</MenuItem>
+        <Divider />
+        <MenuItem onClick={handleNewCompany}>Add Company</MenuItem>
+        <MenuItem onClick={handleViewAllCompanies}>View Companies</MenuItem>
+        <Divider />
         <MenuItem onClick={handleAddTour}>Add Tour</MenuItem>
         <MenuItem onClick={handleViewAllTours}>View Tours</MenuItem>
-        <MenuItem onClick={handleViewAllCompanies}>View Companies</MenuItem>
+        <Divider />
+        <MenuItem onClick={handleAbout}>About</MenuItem>
         <MenuItem onClick={onToggleDropdown}>Close Drawer</MenuItem>
       </Drawer>
       { error &&

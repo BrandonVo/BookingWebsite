@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react'
 import Promise from 'promise'
-import { viewTours, selectTour, deleteTour } from '../../actions'
+import { viewBookings, selectBooking, deleteBooking } from '../../actions'
 import { browserHistory } from 'react-router'
 
 import {
@@ -15,7 +15,7 @@ import {
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 /* eslint no-console: 0 */
-class AllToursContainer extends React.Component {
+class AllBookingsContainer extends React.Component {
   constructor(props) {
     super(props)
 
@@ -30,7 +30,7 @@ class AllToursContainer extends React.Component {
 
 
   componentDidMount(){
-    Promise.resolve(this.props.viewTours()).then(
+    Promise.resolve(this.props.viewBookings()).then(
       () => this.setState({currentlyDisplayed: this.props.items})
     )
   }
@@ -38,20 +38,20 @@ class AllToursContainer extends React.Component {
 
   onSelectChange(key) {
     var selected = this.state.currentlyDisplayed[key]
-    this.props.selectTour(selected)
+    this.props.selectBooking(selected)
   }
 
   onEdit(){
 
-    browserHistory.push('/updateTour')
+    browserHistory.push('/updateBooking')
   }
 
   onSearchChange(event) {
     var newDisplayed = this.props.items.filter((item) => item.cname.toLowerCase().includes(event.target.value.toLowerCase()) ||
       item.cemail.toLowerCase().includes(event.target.value.toLowerCase()) ||
       item.vname.toLowerCase().includes(event.target.value.toLowerCase()) ||
-      item.tourdate.includes(event.target.value.toLowerCase()) ||
-      item.timeslot.toLowerCase().includes(event.target.value.toLowerCase()) ||
+      item.eventdate.includes(event.target.value.toLowerCase()) ||
+      item.price == event.target.value ||
       item.tnumber == event.target.value
     )
     if (event.target.value == ''){
@@ -63,8 +63,8 @@ class AllToursContainer extends React.Component {
   }
 
   onDelete(){
-    this.props.deleteTour()
-    Promise.resolve(this.props.viewTours()).then(
+    this.props.deleteBooking()
+    Promise.resolve(this.props.viewBookings()).then(
       () => this.setState({currentlyDisplayed: this.props.items})
     )
   }
@@ -82,7 +82,7 @@ class AllToursContainer extends React.Component {
       </div>
       <div>
         <center>
-        <h2>Tours</h2>
+        <h2>Bookings</h2>
         {this.props.isFetching && this.props.items.length === 0 &&
           <h2>Loading...</h2>
         }
@@ -100,20 +100,20 @@ class AllToursContainer extends React.Component {
               <TableHeaderColumn>Name</TableHeaderColumn>
               <TableHeaderColumn>Email</TableHeaderColumn>
               <TableHeaderColumn>Venue/Vendor</TableHeaderColumn>
-              <TableHeaderColumn>Tour Date</TableHeaderColumn>
-              <TableHeaderColumn>Timeslot</TableHeaderColumn>
+              <TableHeaderColumn>Event Date</TableHeaderColumn>
+              <TableHeaderColumn>Price</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
           >
             {this.state.currentlyDisplayed.map((item, i) =>
               <TableRow key={i} value={item}>
-                <TableRowColumn>{item.tnumber}</TableRowColumn>
+                <TableRowColumn>{item.bnumber}</TableRowColumn>
                 <TableRowColumn>{item.cname}</TableRowColumn>
                 <TableRowColumn>{item.cemail}</TableRowColumn>
                 <TableRowColumn>{item.vname}</TableRowColumn>
-                <TableRowColumn>{item.tourdate.substring(0, 10)}</TableRowColumn>
-                <TableRowColumn>{item.timeslot}</TableRowColumn>
+                <TableRowColumn>{item.eventdate.substring(0, 10)}</TableRowColumn>
+                <TableRowColumn>{item.price}</TableRowColumn>
               </TableRow>
             )}
           </TableBody>
@@ -133,10 +133,10 @@ class AllToursContainer extends React.Component {
   }
 }
 
-AllToursContainer.propTypes = {
-  viewTours: React.PropTypes.func.isRequired,
-  selectTour: React.PropTypes.func.isRequired,
-  deleteTour: React.PropTypes.func.isRequired,
+AllBookingsContainer.propTypes = {
+  viewBookings: React.PropTypes.func.isRequired,
+  selectBooking: React.PropTypes.func.isRequired,
+  deleteBooking: React.PropTypes.func.isRequired,
   items: React.PropTypes.array,
   isFetching: React.PropTypes.bool,
 }
@@ -146,7 +146,7 @@ const mapStateToProps = (state) => {
     isFetching,
     items,
     selected
-  } = state.tourForm
+  } = state.bookingForm
 
 
   return {
@@ -157,12 +157,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  viewTours: () => dispatch(viewTours()),
-  deleteTour: () => dispatch(deleteTour()),
-  selectTour: (selectedTour) => dispatch(selectTour(selectedTour)),
+  viewBookings: () => dispatch(viewBookings()),
+  deleteBooking: () => dispatch(deleteBooking()),
+  selectBooking: (selectedBooking) => dispatch(selectBooking(selectedBooking)),
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(AllToursContainer)
+)(AllBookingsContainer)
